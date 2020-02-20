@@ -8,7 +8,7 @@ $(document).ready(() => {
        console.log(response)
        let topWord = Object.keys(response.word)
        let count = Object.values(response.word)
-       let string = `Word: ${topWord}   Count: ${count}`
+       let string = `Word: ${topWord}` + "<br><br>" + `Count: ${count}`
        $("#topWord").html(string);
     }});
     $("#button").click(() => {
