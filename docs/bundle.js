@@ -82,8 +82,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(() => {
-  // have fun!
-})
+   __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+     url: 'https://wordwatch-api.herokuapp.com/api/v1/top_word',
+     type: 'get',
+     success: function(response) {
+       console.log(response)
+       let topWord = Object.keys(response.word)
+       let count = Object.values(response.word)
+       let string = `Word: ${topWord}` + "<br><br>" + `Count: ${count}`
+       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#topWord").html(string);
+    }});
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#button").click(() => {
+      let new_words = __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#text").val().split(" ")
+      let new_word = new_words[Math.floor(Math.random() * new_words.length)];
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+        type: "POST",
+        url: 'https://wordwatch-api.herokuapp.com/api/v1/words',
+        data: { "word": { "value": `${new_word}`} },
+        success: alert(`message: ${new_word} added!`)
+      })
+    })
+});
 
 
 /***/ }),
